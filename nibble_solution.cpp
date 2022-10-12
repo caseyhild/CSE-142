@@ -8,12 +8,18 @@ extern "C" uint64_t nibble_search(uint8_t query, const std::vector<uint16_t> & t
     uint64_t count = 0;
 
     for(auto & i: targets) {
-        for(int b = 0; b < 16 - 4; b++) {
-            uint8_t extracted = ((i >> b) & (0xf));
-            if (extracted == query) {
-                count+=1;
-            }
-        }
+        count += (((i) & (0xf)) == query);
+        count += (((i >> 1) & (0xf)) == query);
+        count += (((i >> 2) & (0xf)) == query);
+        count += (((i >> 3) & (0xf)) == query);
+        count += (((i >> 4) & (0xf)) == query);
+        count += (((i >> 5) & (0xf)) == query);
+        count += (((i >> 6) & (0xf)) == query);
+        count += (((i >> 7) & (0xf)) == query);
+        count += (((i >> 8) & (0xf)) == query);
+        count += (((i >> 9) & (0xf)) == query);
+        count += (((i >> 10) & (0xf)) == query);
+        count += (((i >> 11) & (0xf)) == query);
     }
     return count;
 }
